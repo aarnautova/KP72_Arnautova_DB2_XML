@@ -8,7 +8,7 @@ class UaMadeSpider(scrapy.Spider):
     start_urls = ['https://uamade.ua/uk/']
 
     def parse(self, response: Response):
-        products = response.xpath("//div[contains(@class, 'ypi-grid-list__item_body')]")
+        products = response.xpath("//div[contains(@class, 'ypi-grid-list__item_body')]")[:20]
         for product in products:
             yield {
                 'description': product.xpath(".//a[@class='product-title']/@title").get(),
